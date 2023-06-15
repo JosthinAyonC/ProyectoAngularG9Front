@@ -8,10 +8,11 @@ import { Usuario } from 'src/app/models/Usuario.model';
 })
 export class ModalConfirmComponent {
   
-  @Input() idUsuarioAEliminar!: Usuario;
-  @Output() eliminarUsuario = new EventEmitter<number>();
+  @Input() entidadAEliminar!: any;
+  @Input() tipoEntidad!: String;
+  @Output() eliminarEntidad = new EventEmitter<number>();
 
-  eliminarUsuarioConfirmado() {
-    this.eliminarUsuario.emit(this.idUsuarioAEliminar.id);
+  eliminarEntidadConfirmado() {
+    this.eliminarEntidad.emit(this.entidadAEliminar.id);
   }
 }

@@ -13,7 +13,20 @@ export class NuevoUsuarioComponent implements OnInit {
   @Output() usuarioGuardado = new EventEmitter<Usuario>();
 
   form!: FormGroup;
-  roles: Role[] = [];
+  roles: Role[] = [
+    {
+      id: 1,
+      name: 'ROLE_ADMIN',
+    },
+    {
+      id: 2,
+      name: 'ROLE_USER',
+    },
+    {
+      id: 3,
+      name: 'ROLE_MODERATOR',
+    }
+  ];
 
   
   constructor(
