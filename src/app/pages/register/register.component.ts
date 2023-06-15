@@ -22,7 +22,7 @@ export class RegisterComponent {
     
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
-      email: ['', Validators.required],
+      ci: ['', Validators.required],
       password: ['', Validators.required],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -32,7 +32,7 @@ export class RegisterComponent {
     if (this.form.valid) {
       const usuario: Usuario = {
         username: this.form.value.username,
-        email: this.form.value.email,
+        ci: this.form.value.ci,
         password: this.form.value.password,
         firstname: this.form.value.firstname,
         lastname: this.form.value.lastname
