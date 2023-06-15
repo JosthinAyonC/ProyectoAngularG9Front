@@ -5,7 +5,7 @@ export interface Usuario {
     username?: string,
     firstname?: string,
     lastname?: string,
-    email?: string,
+    ci?: string,
     password?: string,
     roles?: Role[],
     status?: string
