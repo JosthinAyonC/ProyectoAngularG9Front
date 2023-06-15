@@ -4,7 +4,7 @@
       <a routerLink="/" class="white-link col-lg-4 link-body-emphasis text-decoration-none">
         <div>
           <h4 class="mb-0"><i class="bi bi-house white-link"></i> Coop segura </h4>
-          <p class="small mt-2 mb-0">"Aseguramos tus pasos"</p>
+          <p class="small mt-1 mb-0">"Aseguramos tu camino"</p>
         </div>
       </a>
 
@@ -16,30 +16,30 @@
           <a class="nav-link px-2  white-link" routerLink="/bus">Buses <i class="bi bi-bus-front"></i></a>
         </li>
         <li>
-          <a class="nav-link px-2  white-link" routerLink="/bus">Reservar <i class="bi bi-journal-bookmark-fill"></i></a>
+          <a class="nav-link px-2  white-link" routerLink="/bus">Destinos <i class="bi bi-airplane-fill"></i></a>
         </li>
         <li>
           <a class="nav-link px-2  white-link" routerLink="/bus">Mis tickets <i class="bi bi-ticket-detailed"></i></a>
         </li>
       </ul>
 
+      <div class="text-end">
+        <a type="button" class="btn btn-outline-light me-2" routerLink="/login">Inicia sesión <i class="bi bi-box-arrow-in-left"></i></a>
+        <a type="button" class="btn btn-outline-light" routerLink="/register">Registrate <i class="bi bi-pencil-square"></i></a>
+      </div>
       <div class="dropdown text-end ">
         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle white-link m-2" data-bs-toggle="dropdown"
           aria-expanded="false">
           <!-- {{usuarioLogged!.firstname}} {{usuarioLogged!.lastname}}  -->
           <i class="white-link bi bi-person-check"></i>
         </a>
-        <ul class="dropdown-menu text-small" style="background-color: gray;">
-          <li><a class="dropdown-item" routerLink="/usuario/myprofile">Perfil <i class="bi bi-person-circle"></i></a></li>
+        <ul class="dropdown-menu" style="background-color: white;">
+          <li><a class="dropdown-item " routerLink="/usuario/myprofile">Perfil <i class="bi bi-person-circle"></i></a></li>
           <li>
             <hr class="dropdown-divider">
           </li>
           <li><a class="dropdown-item" (click)="logout()">Cerrar sesión <i class="bi bi-box-arrow-in-right"></i></a></li>
         </ul>
-      </div>
-      <div class="text-end">
-        <a type="button" class="btn btn-outline-light me-2" routerLink="/login">Inicia sesión <i class="bi bi-box-arrow-in-left"></i></a>
-        <a type="button" class="btn btn-outline-light" routerLink="/register">Registrate <i class="bi bi-pencil-square"></i></a>
       </div>
     </div>
   </div>
