@@ -7,9 +7,22 @@ import { RegisterComponent } from './pages/register/register.component';
 import { EditarUsuarioComponent } from './pages/usuario/editar-usuario/editar-usuario.component';
 import { UnauthorizeComponent } from './pages/unauthorize/unauthorize.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { ProfileComponent } from './pages/usuario/profile/profile.component';
+import { BusComponent } from './pages/bus/bus.component';
+import { EditarBusComponent } from './pages/bus/editar-bus/editar-bus.component';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },  
+  {
+    path: 'unauthorize',
+    component: UnauthorizeComponent,
+  },  
   {
     path: '',
     component: HomeComponent ,
@@ -23,22 +36,13 @@ const routes: Routes = [
     component: EditarUsuarioComponent,
   },
   {
-    path: 'usuario/myprofile',
-    component: ProfileComponent,
-  },
-
-  {
-    path: 'login',
-    component: LoginComponent,
+    path: 'bus',
+    component: BusComponent,
   },
   {
-    path: 'register',
-    component: RegisterComponent,
-  },  
-  {
-    path: 'unauthorize',
-    component: UnauthorizeComponent,
-  },  
+    path: 'bus/editar',
+    component: EditarBusComponent,
+  },
   {
     path: '**',
     component: PageNotFoundComponent,

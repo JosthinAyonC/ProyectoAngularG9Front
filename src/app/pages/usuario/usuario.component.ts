@@ -15,6 +15,10 @@ export class UsuarioComponent {
   usuarioSeleccionado!: Usuario;
   usuarioIdSeleccionado!: number;
   UsuarioString: string = 'usuario';
+  role?: Role;
+  isAdmin: boolean = false;
+  page: number = 0;
+  totalPages?: Array<number>;
   usuarios: Usuario[] = [
     {
       id: 1,
@@ -44,10 +48,6 @@ export class UsuarioComponent {
     },
 
   ];
-  role?: Role;
-  isAdmin: boolean = false;
-  page: number = 0;
-  totalPages?: Array<number>;
 
   constructor(
     private router: Router,
