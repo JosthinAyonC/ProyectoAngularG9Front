@@ -23,6 +23,7 @@ import { BusComponent } from './pages/bus/bus.component';
 import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
 import { EditarBusComponent } from './pages/bus/editar-bus/editar-bus.component';
 import { NuevoBusComponent } from './pages/bus/nuevo-bus/nuevo-bus.component';
+import { TicketComponent } from './pages/ticket/ticket.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { NuevoBusComponent } from './pages/bus/nuevo-bus/nuevo-bus.component';
     BusComponent,
     EditarBusComponent,
     NuevoBusComponent,
+    TicketComponent,
   ],
   imports: [
     BrowserModule,
