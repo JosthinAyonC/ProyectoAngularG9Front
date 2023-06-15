@@ -18,10 +18,11 @@ import { RegisterComponent } from './pages/register/register.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { UnauthorizeComponent } from './pages/unauthorize/unauthorize.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ProfileComponent } from './pages/usuario/profile/profile.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BusComponent } from './pages/bus/bus.component';
 import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
+import { EditarBusComponent } from './pages/bus/editar-bus/editar-bus.component';
+import { NuevoBusComponent } from './pages/bus/nuevo-bus/nuevo-bus.component';
 
 
 @NgModule({
@@ -38,8 +39,9 @@ import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.
     PageNotFoundComponent,
     UnauthorizeComponent,
     FooterComponent,
-    ProfileComponent,
     BusComponent,
+    EditarBusComponent,
+    NuevoBusComponent,
   ],
   imports: [
     BrowserModule,
