@@ -1,23 +1,27 @@
 <nav class="p-3 mb-3 fixed-top" style="background-color: #0b5ed7;">
   <div class="container-fluid">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a routerLink="/" class="d-flex align-items-center white-link col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-        Application
-        <i class="bi bi-house white-link m-1"></i>
+      <a routerLink="/" class="white-link col-lg-4 link-body-emphasis text-decoration-none">
+        <div>
+          <h4 class="mb-0"><i class="bi bi-house white-link"></i> Coop segura </h4>
+          <p class="small mt-2 mb-0">"Aseguramos tus pasos"</p>
+        </div>
       </a>
 
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <ul class="nav col-lg-auto me-lg-auto justify-content-center mb-md-1">
         <li>
           <a class="nav-link px-2  white-link" routerLink="/usuario">Usuarios <i class="bi bi-person"></i></a>
         </li>
         <li>
           <a class="nav-link px-2  white-link" routerLink="/bus">Buses <i class="bi bi-bus-front"></i></a>
         </li>
+        <li>
+          <a class="nav-link px-2  white-link" routerLink="/bus">Reservar <i class="bi bi-journal-bookmark-fill"></i></a>
+        </li>
+        <li>
+          <a class="nav-link px-2  white-link" routerLink="/bus">Mis tickets <i class="bi bi-ticket-detailed"></i></a>
+        </li>
       </ul>
-
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-      </form>
 
       <div class="dropdown text-end ">
         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle white-link m-2" data-bs-toggle="dropdown"
