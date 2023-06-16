@@ -5,9 +5,8 @@ import { Usuario } from "./Usuario.model";
 export interface Viaje {
     id?: number,
     id_bus?: Bus,
-    id_ticket?: Ticket[],
-    id_usuario?: Usuario[],
     fecha?: string,
     observacion?: string,
+    precio?: number,
     status?: string
 }
