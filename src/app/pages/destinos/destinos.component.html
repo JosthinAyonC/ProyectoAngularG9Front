@@ -1,0 +1,56 @@
+<div class="container">
+  <button class="btn btn-primary m-2" data-bs-toggle="modal"
+    data-bs-target="#modal-nuevoDestino">Agregar nuevo <i class="bi bi-person-add"></i></button>
+  <br>
+  <table class="table mt-2" style="background-color: #dfdddd73;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Origen</th>
+        <th scope="col">Destino</th>
+        <th scope="col">Ida</th>
+        <th scope="col">Vuelta:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Viaje of viajes; let i = index">
+        <th scope="row">{{ (i + 1) + (page * 8) }} </th>
+        <td>{{ Viaje.origen }}</td>
+        <td>{{ Viaje.destino }} </td>
+        <td>{{ Viaje.ida }}</td>
+        <td>{{ Viaje.vuelta }}</td>
+        <td >
+          <div class="d-flex gap-2 ">
+            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-confirmacion"
+              (click)="obtenerViaje(Viaje)"><i class="bi bi-trash-fill"></i></a>
+            <a class="btn btn-warning" (click)="obtenerViajeId(Viaje)"><i class="bi bi-pencil-fill"></i></a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <ul class="pagination">
+      <li class="page-item">
+        <button [disabled]="(page==0)" (click)="lastPage()" class="page-link"><i
+            class="bi bi-chevron-double-left"></i></button>
+      </li>
+      <li class="page-item" *ngFor="let pageSelected of totalPages; let i = index">
+        <a (click)="setpage(i)" class="page-link">{{i+1}}</a>
+      </li>
+      <li class="page-item">
+        <button [disabled]="(page==this.totalPages?.length! - 1 )" (click)="nextPage()" class="page-link"><i
+            class="bi bi-chevron-double-right"></i></button>
+      </li>
+    </ul>
+  </div>
+
+  <app-nuevo-destino (viajeGuardado)="onViajeGuardado($event)"></app-nuevo-destino>
+
+  <app-modal-confirm [entidadAEliminar]="viajeSeleccionado" [tipoEntidad]="viajeString" (eliminarEntidad)="delete($event)"></app-modal-confirm>
+  <br>
+</div>
+
+
+
+
