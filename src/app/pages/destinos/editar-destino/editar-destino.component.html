@@ -1,0 +1,49 @@
+<div class="container">
+
+    <section class="d-flex align-items-center justify-content-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 flex-column align-items-center justify-content-center">
+
+            <div class="card mb-3">
+              <div class="card-body">
+                <legend class="text-center header">Editar viaje</legend>
+                <form (ngSubmit)="guardar()" [formGroup]="form">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" formControlName="origen" id="input-origen"
+                    placeholder="origen" required />
+                    <label for="input-nombre" class="form-label">Origen</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" formControlName="destino" id="input-destino"
+                    placeholder="destino" required />
+                    <label for="input-apellido" class="form-label">Destino</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" formControlName="ida" id="input-ida"
+                    placeholder="ida" [readonly]="readonlyMode" />
+                    <label for="input-username" class="form-label">Ida </label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="ci" class="form-control" formControlName="vuelta" id="input-vuelta"
+                    placeholder="vuelta" [readonly]="readonlyMode" />
+                    <label for="input-ci" class="form-label">Vuelta</label>
+                  </div>
+
+                  
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="volver()">
+                      Volver
+                    </button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                      Guardar
+                    </button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,39 @@
+<div  class="modal fade" id="modal-nuevoDestino" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Creacio de nuevo destino</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form (ngSubmit)="guardar()" [formGroup]="form">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" formControlName="origen"  placeholder="origen" required>
+                <label for="floatingInput" >Origen</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" formControlName="destino"  placeholder="destino" required>
+                <label class="form-label">Destino</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" formControlName="ida" placeholder="ida" required>
+                <label for="input-marca" class="form-label">Ida</label>
+              </div>
+              
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" formControlName="ida" placeholder="ida" required>
+                <label for="input-marca" class="form-label">Vuelta</label>
+              </div>
+    
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>

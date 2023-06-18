@@ -24,6 +24,11 @@ import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.
 import { EditarBusComponent } from './pages/bus/editar-bus/editar-bus.component';
 import { NuevoBusComponent } from './pages/bus/nuevo-bus/nuevo-bus.component';
 import { TicketComponent } from './pages/ticket/ticket.component';
+import { DestinosComponent } from './pages/destinos/destinos.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { NuevoDestinoComponent } from './pages/destinos/nuevo-destino/nuevo-destino.component';
+import { EditarDestinoComponent } from './pages/destinos/editar-destino/editar-destino.component';
 
 
 @NgModule({
@@ -44,6 +49,10 @@ import { TicketComponent } from './pages/ticket/ticket.component';
     EditarBusComponent,
     NuevoBusComponent,
     TicketComponent,
+    DestinosComponent,
+    NuevoDestinoComponent,
+    EditarDestinoComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -53,7 +62,9 @@ import { TicketComponent } from './pages/ticket/ticket.component';
     ReactiveFormsModule,
     CommonModule,
     BrowserAnimationsModule, 
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatInputModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

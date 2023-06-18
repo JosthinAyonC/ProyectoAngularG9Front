@@ -9,6 +9,9 @@ import { UnauthorizeComponent } from './pages/unauthorize/unauthorize.component'
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { BusComponent } from './pages/bus/bus.component';
 import { EditarBusComponent } from './pages/bus/editar-bus/editar-bus.component';
+import { DestinosComponent } from './pages/destinos/destinos.component';
+import { EditarDestinoComponent } from './pages/destinos/editar-destino/editar-destino.component';
+
 
 const routes: Routes = [
   {
@@ -43,6 +46,18 @@ const routes: Routes = [
     path: 'bus/editar',
     component: EditarBusComponent,
   },
+
+  {
+    path: 'destinos',
+    component: DestinosComponent,
+  },
+
+  { 
+    path: 'viaje/editar', 
+    component: EditarDestinoComponent 
+  },
+
+
   {
     path: '**',
     component: PageNotFoundComponent,
