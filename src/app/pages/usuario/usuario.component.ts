@@ -14,7 +14,7 @@ export class UsuarioComponent {
   //usuario que va a ser obtenido para extraer el id cuando presione el boton eliminar/editar
   usuarioSeleccionado!: Usuario;
   usuarioIdSeleccionado!: number;
-  UsuarioString: string = 'usuario';
+  UsuarioString: string = 'Esta seguro que desea eliminar este usuario?';
   role?: Role;
   isAdmin: boolean = false;
   page: number = 0;

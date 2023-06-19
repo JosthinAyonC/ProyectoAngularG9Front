@@ -25,20 +25,15 @@ export class NuevoDestinoComponent {
   
   ngOnInit() {
     this.form = this.formBuilder.group({
-      origen: ['', Validators.required],
       destino: ['', Validators.required],
-      Fecha: ['', Validators.required],
-      vuelta: ['', Validators.required],
+      fecha: ['', Validators.required],
       status: ['', Validators.required],
     });
   }
   guardar() {
     if (this.form.valid) {
       const usuario: Viaje = {
-        origen: this.form.value.origen,
         destino: this.form.value.destino,
-        ida: this.form.value.ida,
-        vuelta: this.form.value.vuelta,
         status: this.form.value.status,
       };
       

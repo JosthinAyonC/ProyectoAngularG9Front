@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Bus } from 'src/app/models/Bus.model';
-import { Usuario } from 'src/app/models/Usuario.model';
 
 @Component({
   selector: 'app-bus',
@@ -11,7 +10,7 @@ import { Usuario } from 'src/app/models/Usuario.model';
 export class BusComponent {
   busSeleccionado!: Bus;
   busIdSeleccionado!: number;
-  busString: string = 'bus';
+  busString: string = 'Esta seguro que desea eliminar este bus?';
   isAdmin: boolean = false;
   page: number = 0;
   totalPages?: Array<number>;

@@ -11,24 +11,24 @@ import { Viaje } from 'src/app/models/Viaje.model';
 export class DestinosComponent {
   viajeSeleccionado!: Viaje;
   viajeIdSeleccionado!: number;
-  viajeString: string = 'viaje';
+  viajeString: string = 'Esta seguro que desea eliminar este viaje?';
   isAdmin: boolean = false;
   page: number = 0;
   totalPages?: Array<number>;
   viajes: Viaje[] = [
     {
       id: 1,
-      origen: 'Mucho Lote',
-      destino: 'Av. Delta',
-      ida: '18-02-2024',
-      vuelta: '18-02-2024',
+      destino: 'Montanita',
+      precio: 18.78,
+      observacion: 'Viaje desde gye a Montanita.',
+      fecha: new Date('2023-07-21'),
     },
     {
       id: 2,
-      origen: 'Sauces 9',
-      destino: 'Alborada',
-      ida: '25-06-2023',
-      vuelta: '26-06-2023',
+      destino: 'Banos',
+      precio: 35.78,
+      observacion: 'Viaje desde gye a Banos con desayuno incluido.',
+      fecha: new Date('2023-08-01'),
     },
 
   ];

@@ -9,23 +9,21 @@
           <div class="container">
             <form (ngSubmit)="guardar()" [formGroup]="form">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" formControlName="origen"  placeholder="origen" required>
-                <label for="floatingInput" >Origen</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" formControlName="destino"  placeholder="destino" required>
+                <input type="text" class="form-control" formControlName="destino"  placeholder="Destino" required>
                 <label class="form-label">Destino</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" formControlName="ida" placeholder="ida" required>
-                <label for="input-marca" class="form-label">Ida</label>
+                <input type="text" class="form-control" formControlName="observacion"  placeholder="Observacion" required>
+                <label class="form-label">Descripcion</label>
               </div>
-              
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" formControlName="ida" placeholder="ida" required>
-                <label for="input-marca" class="form-label">Vuelta</label>
+                <input type="number" class="form-control" formControlName="precio"  placeholder="Precio" required>
+                <label class="form-label">Precio</label>
               </div>
-    
+              <div class="form-floating mb-3">
+                <input type="date" class="form-control" formControlName="ida" placeholder="ida" required>
+                <label for="input-marca" class="form-label">Fecha de salida:</label>
+              </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-primary">Guardar</button>

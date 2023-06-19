@@ -1,30 +1,35 @@
 <div class="container">
   <button class="btn btn-primary m-2" data-bs-toggle="modal"
-    data-bs-target="#modal-nuevoDestino">Agregar nuevo <i class="bi bi-person-add"></i></button>
+    data-bs-target="#modal-nuevoDestino">Agregar nuevo <i class="bi bi-airplane-fill"></i></button>
   <br>
   <table class="table mt-2" style="background-color: #dfdddd73;">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Origen</th>
-        <th scope="col">Destino</th>
-        <th scope="col">Ida</th>
-        <th scope="col">Vuelta:</th>
+        <th scope="col">Destino:</th>
+        <th scope="col">Precio:</th>
+        <th  style="text-align: center;" scope="col">Descripcion:</th>
+        <th scope="col">Fecha de salida</th>
+        <th scope="col">Actions</th>
+        <th scope="col">Comprar boleto</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let Viaje of viajes; let i = index">
+      <tr *ngFor="let viaje of viajes; let i = index">
         <th scope="row">{{ (i + 1) + (page * 8) }} </th>
-        <td>{{ Viaje.origen }}</td>
-        <td>{{ Viaje.destino }} </td>
-        <td>{{ Viaje.ida }}</td>
-        <td>{{ Viaje.vuelta }}</td>
+        <td>{{ viaje.destino }}</td>
+        <td>{{ viaje.precio }}</td>
+        <td style="text-align: center;">{{ viaje.observacion }}</td>
+        <td>{{ viaje.fecha | date : "dd/MM/yyyy"}}</td>
         <td >
           <div class="d-flex gap-2 ">
             <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-confirmacion"
-              (click)="obtenerViaje(Viaje)"><i class="bi bi-trash-fill"></i></a>
-            <a class="btn btn-warning" (click)="obtenerViajeId(Viaje)"><i class="bi bi-pencil-fill"></i></a>
+              (click)="obtenerViaje(viaje)"><i class="bi bi-trash-fill"></i></a>
+            <a class="btn btn-warning" (click)="obtenerViajeId(viaje)"><i class="bi bi-pencil-fill"></i></a>
           </div>
+        </td>
+        <td>
+          <a class="btn btn-primary" >Comprar <i class="bi bi-ticket-perforated-fill"></i></a>
         </td>
       </tr>
     </tbody>
@@ -45,9 +50,9 @@
     </ul>
   </div>
 
-  <app-nuevo-destino (viajeGuardado)="onViajeGuardado($event)"></app-nuevo-destino>
-
   <app-modal-confirm [entidadAEliminar]="viajeSeleccionado" [tipoEntidad]="viajeString" (eliminarEntidad)="delete($event)"></app-modal-confirm>
+  
+  <app-nuevo-destino (viajeGuardado)="onViajeGuardado($event)"></app-nuevo-destino>
   <br>
 </div>
 

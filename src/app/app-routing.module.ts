@@ -11,6 +11,7 @@ import { BusComponent } from './pages/bus/bus.component';
 import { EditarBusComponent } from './pages/bus/editar-bus/editar-bus.component';
 import { DestinosComponent } from './pages/destinos/destinos.component';
 import { EditarDestinoComponent } from './pages/destinos/editar-destino/editar-destino.component';
+import { TicketComponent } from './pages/ticket/ticket.component';
 
 
 const routes: Routes = [
@@ -57,6 +58,10 @@ const routes: Routes = [
     component: EditarDestinoComponent 
   },
 
+  { 
+    path: 'mistickets', 
+    component: TicketComponent 
+  },
 
   {
     path: '**',
