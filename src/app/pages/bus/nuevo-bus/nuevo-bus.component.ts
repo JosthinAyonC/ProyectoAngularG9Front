@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Bus } from 'src/app/models/Bus.model';
+import { BusService } from 'src/app/services/bus.service';
 
 @Component({
   selector: 'app-nuevo-bus',
@@ -15,7 +17,9 @@ export class NuevoBusComponent {
   
   constructor(
     private formBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private busService: BusService,
+    private router: Router,
   ) {}
 
   toJson(value: any) {
@@ -40,7 +44,21 @@ export class NuevoBusComponent {
         capacidad: this.form.value.capacidad,
         status: this.form.value.status,
       };
-      
+      this.busService.postBus(usuario).subscribe(
+        {
+          next: (data: Bus) => {
+            this.busGuardado.emit();
+            this.toastr.success('Bus registrado', 'Exito!');
+          },
+          error: (error: any) => {
+            this.toastr.error(error.message);
+          },
+          complete: () => {
+            this.form.reset();
+            this.router.navigate(['/bus']);
+          }
+        }
+      );
     } else {
       this.toastr.error('Debe completar todos los campos', 'Oops campos nulos!');
     }

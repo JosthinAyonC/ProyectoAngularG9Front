@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Bus } from 'src/app/models/Bus.model';
+import { BusService } from 'src/app/services/bus.service';
 
 @Component({
   selector: 'app-bus',
@@ -14,32 +16,16 @@ export class BusComponent {
   isAdmin: boolean = false;
   page: number = 0;
   totalPages?: Array<number>;
-  buses: Bus[] = [
-    {
-      id: 1,
-      placa: 'ABC-123',
-      model: '2019',
-      marca: 'Mercedes Benz',
-      capacidad: 50,
-      status: 'A'
-    },
-    {
-      id: 2,
-      placa: 'GYE-123',
-      model: '2012',
-      marca: 'Volswagen',
-      capacidad: 50,
-      status: 'A'
-    },
-
-  ];
+  buses: Bus[] = [];
 
   constructor(
     private router: Router,
+    private busService: BusService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
-    
+    this.listarBuses();
   }
 
   lastPage() {
@@ -58,11 +44,33 @@ export class BusComponent {
   }
 
   listarBuses() {
-    
+    this.busService.getBuses().subscribe(
+      {
+        next: (data: Bus[]) => {
+          this.buses = data;
+        },
+        error: (error: any) => {
+          this.toastr.error(error.message);
+        }
+      }
+    );
   }
 
   delete(id: number) {
-    
+    this.busService.deleteBus(id).subscribe(
+      {
+        next: (data: any) => {
+          this.toastr.success(data.message);
+          this.listarBuses();
+        },
+        error: (error: any) => {
+          this.toastr.error(error.message);
+        },
+        complete: () => {
+          this.listarBuses();
+        }
+      }
+    );
   }
 
   obtenerBus(bus: Bus) {
@@ -74,8 +82,8 @@ export class BusComponent {
     this.router.navigate(['bus/editar']);
   }
 
-  onBusGuardado(bus: Bus) {
-    this.buses.unshift(bus);
+  onBusGuardado() {
+    this.listarBuses();
   }
 
 }

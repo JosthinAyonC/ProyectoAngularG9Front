@@ -7,6 +7,6 @@ export interface Usuario {
     lastname?: string,
     ci?: string,
     password?: string,
-    roles?: Role[],
     status?: string
+    roles?: Role[],
 }

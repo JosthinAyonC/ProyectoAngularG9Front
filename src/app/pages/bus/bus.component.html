@@ -18,8 +18,8 @@
         <th scope="row">{{ (i + 1) + (page * 8) }} </th>
         <td>{{ bus.placa }}</td>
         <td>{{ bus.marca }} {{ bus.model }} </td>
-        <td>{{ bus.capacidad }}</td>
-        <td>{{ bus.status }}</td>
+        <td>{{ bus.capacidad }} asientos</td>
+        <td>{{ bus.status == "A"? "Activo":"Inactivo" }}</td>
         <td >
           <div class="d-flex gap-2 ">
             <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-confirmacion"
@@ -46,7 +46,7 @@
     </ul>
   </div>
 
-  <app-nuevo-bus (busGuardado)="onBusGuardado($event)"></app-nuevo-bus>
+  <app-nuevo-bus (busGuardado)="onBusGuardado()"></app-nuevo-bus>
 
   <app-modal-confirm [entidadAEliminar]="busSeleccionado" [tipoEntidad]="busString" (eliminarEntidad)="delete($event)"></app-modal-confirm>
   <br>

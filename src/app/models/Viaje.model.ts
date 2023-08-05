@@ -1,6 +1,4 @@
 import { Bus } from "./Bus.model";
-import { Ticket } from "./Ticket.model";
-import { Usuario } from "./Usuario.model";
 
 export interface Viaje {
     id?: number,
@@ -8,5 +6,6 @@ export interface Viaje {
     fecha?: Date,
     observacion?: string,
     precio?: number,
-    status?: string
+    status?: string,
+    bus?: Bus
 }
