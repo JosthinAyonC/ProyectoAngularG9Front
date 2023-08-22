@@ -29,7 +29,7 @@
           </div>
         </td>
         <td>
-          <a class="btn btn-primary" >Comprar <i class="bi bi-ticket-perforated-fill"></i></a>
+          <a class="btn btn-primary" (click)="comprarBoleto(viaje)" data-bs-target="#modal-comprar" data-bs-toggle="modal">Comprar <i class="bi bi-ticket-perforated-fill"></i></a>
         </td>
       </tr>
     </tbody>
@@ -50,6 +50,7 @@
     </ul>
   </div>
 
+  <app-comprarboleto (emitidaCompra)="comprarBoleta($event)"> </app-comprarboleto>
   <app-modal-confirm [entidadAEliminar]="viajeSeleccionado" [tipoEntidad]="viajeString" (eliminarEntidad)="delete($event)"></app-modal-confirm>
   
   <app-nuevo-destino (viajeGuardado)="onViajeGuardado($event)"></app-nuevo-destino>

@@ -7,5 +7,5 @@ export interface Viaje {
     observacion?: string,
     precio?: number,
     status?: string,
-    bus?: Bus
+    busId?: Bus
 }

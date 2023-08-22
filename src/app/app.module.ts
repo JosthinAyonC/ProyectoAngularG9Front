@@ -29,6 +29,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { NuevoDestinoComponent } from './pages/destinos/nuevo-destino/nuevo-destino.component';
 import { EditarDestinoComponent } from './pages/destinos/editar-destino/editar-destino.component';
+import { ComprarboletoComponent } from './pages/destinos/comprarboleto/comprarboleto.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { EditarDestinoComponent } from './pages/destinos/editar-destino/editar-d
     DestinosComponent,
     NuevoDestinoComponent,
     EditarDestinoComponent,
+    ComprarboletoComponent,
     
   ],
   imports: [

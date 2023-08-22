@@ -1,56 +1,53 @@
 <div class="container">
-    <a class="btn btn-primary m-2" routerLink="/destinos">Viajar <i class="bi bi-airplane-fill"></i></a>
-    <br>
-    <table class="table mt-2" style="background-color: #dfdddd73;">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Destino:</th>
-          <th scope="col">Precio:</th>
-          <th  style="text-align: center;" scope="col">Descripcion:</th>
-          <th scope="col">Fecha de salida</th>
-          <th scope="col">Estado</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let ticket of tickets; let i = index">
-          <th scope="row">{{ (i + 1) + (page * 8) }} </th>
-          <td>{{ ticket.id_viaje?.destino }}</td>
-          <td>{{ ticket.id_viaje?.precio }}</td>
-          <td style="text-align: center;">{{ ticket.observacion }}</td>
-          <td>{{ ticket.id_viaje?.fecha | date : "dd/MM/yyyy"}}</td>
-          <td>{{ ticket.status }}</td>
-          <td >
-            <div class="d-flex gap-2 ">
-              <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-confirmacion"
-              (click)="obtenerTicket(ticket)">Cancelar ticket <i class="bi bi-exclamation-circle"></i></a>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div>
-      <ul class="pagination">
-        <li class="page-item">
-          <button [disabled]="(page==0)" (click)="lastPage()" class="page-link"><i
-              class="bi bi-chevron-double-left"></i></button>
-        </li>
-        <li class="page-item" *ngFor="let pageSelected of totalPages; let i = index">
-          <a (click)="setpage(i)" class="page-link">{{i+1}}</a>
-        </li>
-        <li class="page-item">
-          <button [disabled]="(page==this.totalPages?.length! - 1 )" (click)="nextPage()" class="page-link"><i
-              class="bi bi-chevron-double-right"></i></button>
-        </li>
-      </ul>
+  <a class="btn btn-primary m-2" routerLink="/destinos">Viajar <i class="bi bi-airplane-fill"></i></a>
+  <div class="modal-content">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ingresa tu número de cedula para consultar tus tickets</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-  
-    <app-modal-confirm [entidadAEliminar]="ticketSeleccionado" [tipoEntidad]="ticketString" (eliminarEntidad)="delete($event)"></app-modal-confirm>
-    <br>
-  </div>
-  
-  
-  
-  
-  
+    <div class="modal-body">
+        <form [formGroup]="form">
+            <input type="text" formControlName="cedula" class="inputcito form-control">
+          </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="mt-2 btn btn-primary" 
+            data-bs-dismiss="modal" (click)="consultarMisTickets()">Consultar</button>
+    </div>
+</div>
+  <br><br><br>
+  <table class="table mt-2" style="background-color: #dfdddd73;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Destino:</th>
+        <th scope="col">Precio:</th>
+        <th style="text-align: center;" scope="col">Descripcion:</th>
+        <th scope="col">Fecha de salida</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of tickets; let i = index">
+        <th scope="row">{{ (i + 1) + (page * 8) }} </th>
+        <td>{{ ticket.idViaje?.destino }}</td>
+        <td>{{ ticket.idViaje?.precio }}</td>
+        <td style="text-align: center;">{{ ticket.observacion }}</td>
+        <td>{{ ticket.idViaje?.fecha | date : "dd/MM/yyyy"}}</td>
+        <td>{{ ticket.status }}</td>
+        <td>
+          <div class="d-flex gap-2 ">
+            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-confirmacion"
+              (click)="obtenerTicket(ticket)">Cancelar ticket <i class="bi bi-exclamation-circle"></i></a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <app-modal-confirm [entidadAEliminar]="ticketSeleccionado" [tipoEntidad]="ticketString"
+    (eliminarEntidad)="delete($event)"></app-modal-confirm>
+  <br>
+</div>

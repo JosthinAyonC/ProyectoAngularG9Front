@@ -1,64 +1,53 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Ticket } from 'src/app/models/Ticket.model';
+import { TicketService } from 'src/app/services/ticket.service';
 
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.css']
+  styleUrls: ['./ticket.component.css'],
 })
 export class TicketComponent {
   ticketSeleccionado?: Ticket;
   ticketString: string = 'Seguro que desea cancelar su ticket';
   page: number = 0;
   totalPages?: Array<number>;
-  tickets: Ticket[] = [
-    {
-      id: 1,
-      id_viaje:{
-        id: 1,
-        destino: 'Montanita',
-        precio: 10.56,
-        fecha: new Date('2023-07-21'),
-      },
-      observacion: 'Listo para partir',
-      status: 'R',
-    },
-
-
-  ];
+  tickets: Ticket[] = [];
+  form!: FormGroup;
 
   constructor(
     private router: Router,
-  ) { }
+    private formBuilder: FormBuilder,
+    private ticketService: TicketService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
-    
+    this.form = this.formBuilder.group({
+      cedula: ['', Validators.required],
+    });
   }
 
   lastPage() {
     this.page--;
-    this.listarViajes();
   }
 
-  nextPage() {
-    this.page++;
-    this.listarViajes();
-  }
-  
-  setpage(page: number): void {
-    this.page = page;
-    this.listarViajes();
+  consultarMisTickets() {
+    this.tickets = [];
+    if (this.form.valid) {
+      this.ticketService.getTicketsByCedula(this.form.value.cedula).subscribe({
+        next: (tickets) => {
+          this.tickets = tickets;
+        }
+      });
+    }else{
+      this.toastr.error('Debe ingresar una cedula', 'Error');
+    }
   }
 
-  listarViajes() {
-    
-  }
-
-  delete(id: number) {
-    
-  }
-  obtenerTicket(ticket:Ticket): void {
-
-  }
+  delete(id: number) {}
+  obtenerTicket(ticket: Ticket): void {}
 }
