@@ -80,7 +80,7 @@ export class UsuarioComponent {
   }
 
   onUsuarioGuardado(usuario: Usuario) {
-    this.usuarios.unshift(usuario);
+    this.listarUsuarios();
   }
 
 }

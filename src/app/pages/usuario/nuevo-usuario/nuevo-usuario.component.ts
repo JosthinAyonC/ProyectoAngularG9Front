@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Role } from 'src/app/models/Role.model';
 import { Usuario } from 'src/app/models/Usuario.model';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-nuevo-usuario',
@@ -27,11 +28,11 @@ export class NuevoUsuarioComponent implements OnInit {
       name: 'ROLE_MODERATOR',
     }
   ];
-
   
   constructor(
     private formBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private usuarioService: UsuarioService
   ) {}
 
   toJson(value: any) {
@@ -47,7 +48,6 @@ export class NuevoUsuarioComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       status: ['', Validators.required],
-      roles: ['', Validators.required],
     });
   }
   guardar() {
@@ -59,8 +59,20 @@ export class NuevoUsuarioComponent implements OnInit {
         firstname: this.form.value.firstname,
         lastname: this.form.value.lastname,
         status: this.form.value.status,
-        roles: [JSON.parse(this.form.value.roles)] ,
       };
+      this.usuarioService.postUsuario(usuario).subscribe({
+        next: () => {
+          this.toastr.success('Usuario guardado', 'Exito');
+          this.usuarioGuardado.emit();
+        },
+        error: (data:any) => {
+          this.toastr.error(data.error.message, 'Error');
+        },
+        complete: () => {
+         this.form.reset();
+        }
+      });
+
       
     } else {
       this.toastr.error('Debe completar todos los campos', 'Oops campos nulos!');

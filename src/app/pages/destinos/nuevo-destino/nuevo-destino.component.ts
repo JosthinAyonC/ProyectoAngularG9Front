@@ -44,8 +44,9 @@ export class NuevoDestinoComponent {
       next: (buses) => {
         this.buses = buses;
       },
-      error: (error) => {},
-      complete: () => {},
+      error: (error) => {
+        this.toastr.error('Error al traer los buses', 'Oops hubo un error!');
+      },
     });
   }
 

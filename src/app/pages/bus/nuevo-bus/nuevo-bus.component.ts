@@ -46,12 +46,12 @@ export class NuevoBusComponent {
       };
       this.busService.postBus(usuario).subscribe(
         {
-          next: (data: Bus) => {
+          next: () => {
             this.busGuardado.emit();
             this.toastr.success('Bus registrado', 'Exito!');
           },
           error: (error: any) => {
-            this.toastr.error(error.message);
+            this.toastr.error(error.error.message);
           },
           complete: () => {
             this.form.reset();
