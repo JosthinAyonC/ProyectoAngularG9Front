@@ -72,7 +72,6 @@ export class EditarBusComponent {
         this.router.navigate(['bus']);
       },
       error: (error: any) => {
-        console.log(error);
         this.toastr.error(error.message);
       },
     });

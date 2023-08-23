@@ -41,6 +41,9 @@ export class TicketComponent {
       this.ticketService.getTicketsByCedula(this.form.value.cedula).subscribe({
         next: (tickets) => {
           this.tickets = tickets;
+        },
+        error: (error) => {
+          this.toastr.error(error.error.message, 'Error');
         }
       });
     }else{
@@ -48,6 +51,18 @@ export class TicketComponent {
     }
   }
 
-  delete(id: number) {}
-  obtenerTicket(ticket: Ticket): void {}
+  delete(id: number) {
+    this.ticketService.deleteTicket(id).subscribe({
+      next: () => {
+        this.toastr.success('Ticket cancelado', 'Exito');
+        this.consultarMisTickets();
+      },
+      error: (error) => {
+        this.toastr.error(error.error.message, 'Error');
+      },
+    });
+  }
+  obtenerTicket(ticket: Ticket): void {
+    this.ticketSeleccionado = ticket;
+  }
 }

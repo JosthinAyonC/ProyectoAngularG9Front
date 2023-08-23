@@ -20,10 +20,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Destino:</th>
-        <th scope="col">Precio:</th>
         <th style="text-align: center;" scope="col">Descripcion:</th>
-        <th scope="col">Fecha de salida</th>
         <th scope="col">Estado</th>
         <th scope="col">Actions</th>
       </tr>
@@ -31,11 +28,8 @@
     <tbody>
       <tr *ngFor="let ticket of tickets; let i = index">
         <th scope="row">{{ (i + 1) + (page * 8) }} </th>
-        <td>{{ ticket.idViaje?.destino }}</td>
-        <td>{{ ticket.idViaje?.precio }}</td>
         <td style="text-align: center;">{{ ticket.observacion }}</td>
-        <td>{{ ticket.idViaje?.fecha | date : "dd/MM/yyyy"}}</td>
-        <td>{{ ticket.status }}</td>
+          <td>{{ ticket.status== "A"? "Aprobado" : "Denegado" }} </td>
         <td>
           <div class="d-flex gap-2 ">
             <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-confirmacion"

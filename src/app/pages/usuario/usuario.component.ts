@@ -1,9 +1,11 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 
 import { Role } from 'src/app/models/Role.model';
 import { Usuario } from 'src/app/models/Usuario.model';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-usuario',
@@ -15,46 +17,19 @@ export class UsuarioComponent {
   usuarioSeleccionado!: Usuario;
   usuarioIdSeleccionado!: number;
   UsuarioString: string = 'Esta seguro que desea eliminar este usuario?';
-  role?: Role;
   isAdmin: boolean = false;
   page: number = 0;
   totalPages?: Array<number>;
-  usuarios: Usuario[] = [
-    {
-      id: 1,
-      username: 'Chustin',
-      ci: '0954383949',
-      password: '',
-      firstname: 'Jostin',
-      lastname: 'Ayon',
-      roles: [{
-        id: 1,
-        name: 'ROLE_ADMIN',
-      }],
-      status: 'A'
-    },
-    {
-      id: 2,
-      username: 'SALTOS',
-      ci: '0978898732',
-      password: '',
-      firstname: 'Jose',
-      lastname: 'Sanchez',
-      roles: [{
-        id: 1,
-        name: 'ROLE_USER',
-      }],
-      status: 'A'
-    },
-
-  ];
+  usuarios: Usuario[] = [];
 
   constructor(
     private router: Router,
+    private usuarioService: UsuarioService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
-    
+    this.listarUsuarios();
   }
 
   lastPage() {
@@ -73,11 +48,26 @@ export class UsuarioComponent {
   }
 
   listarUsuarios() {
-    
+    this.usuarioService.getUsuarios().subscribe({
+      next: (usuarios) => {
+        this.usuarios = usuarios;
+      },
+      error: (error) => {
+        this.toastr.error(error.error.message, 'Error');
+      },
+    });
   }
 
   delete(id: number) {
-    
+    this.usuarioService.deleteUsuario(id).subscribe({
+      next: () => {
+        this.toastr.success('Usuario eliminado', 'Exito');
+        this.listarUsuarios();
+      },
+      error: (error) => {
+        this.toastr.error(error.error.message, 'Error');
+      },
+    });
   }
 
   obtenerUsuario(usuario: Usuario) {
