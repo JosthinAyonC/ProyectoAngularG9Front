@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Viaje } from 'src/app/models/Viaje.model';
+import {DestinoService} from "../../../services/destino.service";
 
 @Component({
   selector: 'app-editar-destino',
@@ -18,20 +19,41 @@ export class EditarDestinoComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private destinoService: DestinoService
   ) { }
 
 
   readonlyMode: boolean = true;
 
-  ngOnInit() {    
-    
+  ngOnInit() {
+    const id = +this.id!;
+    this.destinoService.getViaje(id).subscribe({
+      next: (viaje: Viaje) => {
+        this.viaje = viaje;
+        this.setupForm();
+      },
+      error: (error: any) => {
+        this.toastr.error(error.message);
+        this.router.navigate(['destinos']);
+      }
+    });
+
     this.form = this.formBuilder.group({
       origen: ['', Validators.required],
       destino: ['', Validators.required],
       Fecha: ['', Validators.required],
       vuelta: ['', Validators.required],
       status: ['', Validators.required],
+    });
+  }
+
+  setupForm() {
+    this.form = this.formBuilder.group({
+      destino: this.viaje.destino,
+      observacion: this.viaje.observacion,
+      precio: this.viaje.precio,
+      ida: this.viaje.fecha,
     });
   }
 
@@ -43,6 +65,14 @@ export class EditarDestinoComponent {
     return JSON.stringify(value);
   }
   guardar() {
-    
+    this.destinoService.putViaje(this.form.value, Number(this.id)).subscribe({
+      next: (data: any) => {
+        this.toastr.success(data.message);
+        this.router.navigate(['destinos']);
+      },
+      error: (error: any) => {
+        this.toastr.error(error.message);
+      },
+    });
   }
 }
