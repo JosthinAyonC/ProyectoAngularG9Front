@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { Role } from 'src/app/models/Role.model';
 import { Usuario } from 'src/app/models/Usuario.model';
+import {UsuarioService} from "../../../services/usuario.service";
 
 @Component({
   selector: 'app-editar-usuario',
@@ -21,19 +22,44 @@ export class EditarUsuarioComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private usuarioService: UsuarioService
   ) { }
 
 
   readonlyMode: boolean = true;
 
-  ngOnInit() {    
-    
+  ngOnInit() {
+    const id = +this.id!;
+    this.usuarioService.getUsuario(id).subscribe({
+      next: (usuario: Usuario) => {
+        this.usuario = usuario;
+        this.setupForm();
+      },
+      error: (error: any) => {
+        this.toastr.error(error.message);
+        this.router.navigate(['usuario']);
+      },
+    });
+
     this.form = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      status: ['', Validators.required],
+      username: ['', Validators.required],
+      ci: ['', Validators.required],
       roles: ['', Validators.required],
+      status: ['', Validators.required],
+    });
+  }
+
+  setupForm() {
+    this.form = this.formBuilder.group({
+      firstname: this.usuario.firstname,
+      lastname: this.usuario.lastname,
+      username: this.usuario.username,
+      ci: this.usuario.ci,
+      status: this.usuario.status,
+      roles: this.usuario.roles,
     });
   }
 
@@ -45,6 +71,14 @@ export class EditarUsuarioComponent {
     return JSON.stringify(value);
   }
   guardar() {
-    
+    this.usuarioService.putUsuario(this.form.value, Number(this.id)).subscribe({
+      next: (data: any) => {
+        this.toastr.success(data.message);
+        this.router.navigate(['usuario']);
+      },
+      error: (error: any) => {
+        this.toastr.error(error.error.message);
+      },
+    });
   }
 }
